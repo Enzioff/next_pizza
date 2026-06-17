@@ -12,3 +12,4 @@ export { Slider } from "./slider";
 export { Title } from "./title";
 export { Category } from "./Category";
 export { SortPopup } from "./SortPopup";
+export { FilterCheckbox } from "./FilterCheckbox";

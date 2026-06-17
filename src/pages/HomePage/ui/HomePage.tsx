@@ -1,7 +1,8 @@
 import {cn} from "@/shared/lib/utils";
 import {Container, Title} from "@/shared/ui";
 import {TopBar} from "@/widgets/TopBar";
-import {Filters} from "@/entities/Filters";
+import {Filters} from "@/widgets/Filters";
+import {ProductsGroupList} from "@/features/ProductsGroupList";
 
 interface HomePageProps {
     className?: string;
@@ -20,18 +21,90 @@ export function HomePage({className}: HomePageProps) {
                         <Filters/>
                     </div>
                     <div className={'flex-1 flex flex-col gap-12'}>
-                        <div className={'grid grid-cols-3 gap-12'}>
-                            <div>Список товаров</div>
-                            <div>Список товаров</div>
-                            <div>Список товаров</div>
-                            <div>Список товаров</div>
-                        </div>
-                        <div className={'grid grid-cols-3 gap-12'}>
-                            <div>Список товаров</div>
-                            <div>Список товаров</div>
-                            <div>Список товаров</div>
-                            <div>Список товаров</div>
-                        </div>
+                        <ProductsGroupList
+                            title={'Пиццы'}
+                            categoryId={0}
+                            products={[
+                                {
+                                    id: '0',
+                                    name: 'Диабло',
+                                    price: 499,
+                                    imageUrl: 'https://media.dodostatic.net/image/r:584x584/0198bf439a007604880d0231be87cd3e.webp'
+                                },
+                                {
+                                    id: '0',
+                                    name: 'Диабло',
+                                    price: 499,
+                                    imageUrl: 'https://media.dodostatic.net/image/r:584x584/0198bf439a007604880d0231be87cd3e.webp'
+                                },
+                                {
+                                    id: '0',
+                                    name: 'Диабло',
+                                    price: 499,
+                                    imageUrl: 'https://media.dodostatic.net/image/r:584x584/0198bf439a007604880d0231be87cd3e.webp'
+                                },
+                                {
+                                    id: '0',
+                                    name: 'Диабло',
+                                    price: 499,
+                                    imageUrl: 'https://media.dodostatic.net/image/r:584x584/0198bf439a007604880d0231be87cd3e.webp'
+                                },
+                                {
+                                    id: '0',
+                                    name: 'Диабло',
+                                    price: 499,
+                                    imageUrl: 'https://media.dodostatic.net/image/r:584x584/0198bf439a007604880d0231be87cd3e.webp'
+                                },
+                                {
+                                    id: '0',
+                                    name: 'Диабло',
+                                    price: 499,
+                                    imageUrl: 'https://media.dodostatic.net/image/r:584x584/0198bf439a007604880d0231be87cd3e.webp'
+                                }
+                            ]}
+                        />
+                        <ProductsGroupList
+                            title={'Завтраки'}
+                            categoryId={1}
+                            products={[
+                                {
+                                    id: '0',
+                                    name: 'Диабло',
+                                    price: 499,
+                                    imageUrl: 'https://media.dodostatic.net/image/r:584x584/0198bf439a007604880d0231be87cd3e.webp'
+                                },
+                                {
+                                    id: '0',
+                                    name: 'Диабло',
+                                    price: 499,
+                                    imageUrl: 'https://media.dodostatic.net/image/r:584x584/0198bf439a007604880d0231be87cd3e.webp'
+                                },
+                                {
+                                    id: '0',
+                                    name: 'Диабло',
+                                    price: 499,
+                                    imageUrl: 'https://media.dodostatic.net/image/r:584x584/0198bf439a007604880d0231be87cd3e.webp'
+                                },
+                                {
+                                    id: '0',
+                                    name: 'Диабло',
+                                    price: 499,
+                                    imageUrl: 'https://media.dodostatic.net/image/r:584x584/0198bf439a007604880d0231be87cd3e.webp'
+                                },
+                                {
+                                    id: '0',
+                                    name: 'Диабло',
+                                    price: 499,
+                                    imageUrl: 'https://media.dodostatic.net/image/r:584x584/0198bf439a007604880d0231be87cd3e.webp'
+                                },
+                                {
+                                    id: '0',
+                                    name: 'Диабло',
+                                    price: 499,
+                                    imageUrl: 'https://media.dodostatic.net/image/r:584x584/0198bf439a007604880d0231be87cd3e.webp'
+                                }
+                            ]}
+                        />
                     </div>
                 </div>
             </Container>

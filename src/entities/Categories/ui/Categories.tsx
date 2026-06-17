@@ -2,15 +2,16 @@
 
 import {cn} from "@/shared/lib/utils";
 import {Category} from "@/shared/ui";
-import {useState} from "react";
+import {useEffect, useState} from "react";
+import {useCategoryStore} from "@/store";
 
 interface CategoriesProps {
     className?: string;
 }
 
 const categories = [
-    { id: 1, name: 'Все' },
-    { id: 2, name: 'Мясные' },
+    { id: 1, name: 'Пиццы' },
+    { id: 2, name: 'Завтраки' },
     { id: 3, name: 'Острые' },
     { id: 4, name: 'Сладкие' },
     { id: 5, name: 'Вегетарианские' },
@@ -18,10 +19,11 @@ const categories = [
 ];
 
 export const Categories = ({className}: CategoriesProps) => {
-    const [activeIndex, setActiveIndex] = useState<number>(0);
+    const activeCategoryId = useCategoryStore((state) => state.activeCategoryId);
+    const setActiveCategoryId = useCategoryStore((state) => state.setActiveCategory);
     
     const handleClick = (idx: number) => {
-        setActiveIndex(idx);
+        setActiveCategoryId(idx);
     }
     
     return (
@@ -31,7 +33,8 @@ export const Categories = ({className}: CategoriesProps) => {
                     <Category
                         onClick={() => handleClick(idx)}
                         key={item.name}
-                        className={cn(idx === activeIndex && 'bg-white shadow-md shadow-gray-200 text-primary transition duration-150')}
+                        name={item.name}
+                        className={cn(idx === activeCategoryId && 'bg-white shadow-md shadow-gray-200 text-primary transition duration-150')}
                     >
                         {item.name}
                     </Category>
