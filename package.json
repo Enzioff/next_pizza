@@ -10,7 +10,6 @@
     "prisma:push": "prisma db push",
     "prisma:studio": "prisma studio"
   },
-  "type": "module",
   "dependencies": {
     "@base-ui/react": "^1.5.0",
     "@prisma/client": "^7.8.0",
