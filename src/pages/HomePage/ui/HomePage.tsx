@@ -8,7 +8,7 @@ interface HomePageProps {
     className?: string;
 }
 
-export function HomePage({className}: HomePageProps) {
+export const HomePage = ({className}: HomePageProps) => {
     return (
         <div className={cn('pt-10', className)}>
             <Container className={'flex flex-col justify-start'}>
