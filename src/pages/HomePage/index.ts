@@ -1,1 +1,5 @@
-export { HomePage } from "./ui/HomePage"
+import {HomePage} from "@/pages/HomePage/ui/HomePage";
+
+export {
+    HomePage,
+}
