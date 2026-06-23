@@ -4,7 +4,8 @@ import {cn} from "@/shared/lib/utils";
 import {FilterCheckbox, Input} from "@/shared/ui";
 import {Activity, ChangeEvent, useState} from "react";
 
-interface FilterItem {
+export interface FilterItem {
+    id: number;
     text: string;
     value: string;
     name: string;
@@ -19,8 +20,9 @@ interface FiltersGroupProps {
     defaultItems: FilterItem[];
     limit?: number;
     searchInputPlaceholder?: string;
-    onChange?: (values: string[]) => void;
+    onChange: (values: number) => void;
     defaultValue?: string;
+    filterItems: Set<number>;
     className?: string;
 }
 
@@ -32,6 +34,7 @@ export const FiltersGroup = (
         limit = 6,
         searchInputPlaceholder = 'Поиск...',
         onChange,
+        filterItems,
         defaultValue,
         className
     }: FiltersGroupProps) => {
@@ -43,7 +46,7 @@ export const FiltersGroup = (
     }
     
     const limitList = showAll
-        ? items.filter(el => el.text.toLowerCase().includes(searchValue.toLowerCase()))
+        ? items.filter(el => el.name.toLowerCase().includes(searchValue.toLowerCase()))
         : defaultItems.slice(0, limit);
     
     return (
@@ -60,12 +63,12 @@ export const FiltersGroup = (
                 {
                     limitList && limitList.map((item) => (
                         <FilterCheckbox
-                            onCheckedChange={(idx) => console.log('idx', idx)}
-                            text={item.text}
+                            onCheckedChange={() => onChange(item.id)}
+                            text={item.name}
                             value={item.value}
                             name={item.name}
-                            key={item.text}
-                            checked={false}
+                            key={item.name}
+                            checked={filterItems?.has(item.id)}
                             endAdornment={item.endAdornment}
                         />
                     ))

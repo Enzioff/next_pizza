@@ -11,7 +11,7 @@ export interface ProductCardProps extends IProductCard {
 export const ProductCard = ({id, name, price, imageUrl, className}: ProductCardProps) => {
     return (
         <div className={cn('flex flex-col gap-4', className)}>
-            <Link href={`/products/${id}`}>
+            <Link href={`/product/${id}`} scroll={true}>
                 <div className={'flex justify-center p-6 bg-secondary rounded-lg h-[260px]'}>
                     <img className={'w-[215px] h-[215px]'} src={imageUrl} alt={name}/>
                 </div>

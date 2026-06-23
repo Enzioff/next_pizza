@@ -8,7 +8,7 @@ interface CategoryProps extends React.HTMLAttributes<HTMLDivElement>{
 
 export const Category = ({className, name, children, ...props}: CategoryProps) => {
     return (
-        <a href={`/#${name}`} {...props} className={cn('cursor-pointer font-bold py-2.5 px-4 bg-transparent rounded-2xl', className)}>
+        <a href={`/#${name}`} {...props} className={cn('cursor-pointer font-bold py-2.5 px-4 bg-transparent rounded-2xl scroll-pt-10', className)}>
             {children}
         </a>
     );

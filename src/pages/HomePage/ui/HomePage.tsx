@@ -3,108 +3,49 @@ import {Container, Title} from "@/shared/ui";
 import {TopBar} from "@/widgets/TopBar";
 import {Filters} from "@/widgets/Filters";
 import {ProductsGroupList} from "@/features/ProductsGroupList";
+import {FilterItem} from "@/entities/FiltersGroup";
+import {Prisma} from "@/generated/prisma";
+
+type ProductsType = Prisma.CategoryGetPayload<{
+    include: {
+        products: {
+            include: {
+                productVariants: true
+            }
+        }
+    }
+}>;
+
 
 interface HomePageProps {
     className?: string;
+    ingredients?: FilterItem[];
+    categories?: ProductsType[];
 }
 
-const HomePage = ({className}: HomePageProps) => {
+const HomePage = ({ingredients, categories, className}: HomePageProps) => {
     return (
         <div className={cn('pt-10', className)}>
             <Container className={'flex flex-col justify-start'}>
                 <Title text={'Все пиццы'} size={"lg"} className={'font-extrabold'}/>
             </Container>
-            <TopBar/>
+            <TopBar categories={categories}/>
             <Container className={'pt-4 pb-14'}>
                 <div className={'flex gap-[60px]'}>
                     <div className={'w-[250px]'}>
-                        <Filters/>
+                        <Filters ingredients={ingredients}/>
                     </div>
                     <div className={'flex-1 flex flex-col gap-12'}>
-                        <ProductsGroupList
-                            title={'Пиццы'}
-                            categoryId={0}
-                            products={[
-                                {
-                                    id: '0',
-                                    name: 'Диабло',
-                                    price: 499,
-                                    imageUrl: 'https://media.dodostatic.net/image/r:584x584/0198bf439a007604880d0231be87cd3e.webp'
-                                },
-                                {
-                                    id: '0',
-                                    name: 'Диабло',
-                                    price: 499,
-                                    imageUrl: 'https://media.dodostatic.net/image/r:584x584/0198bf439a007604880d0231be87cd3e.webp'
-                                },
-                                {
-                                    id: '0',
-                                    name: 'Диабло',
-                                    price: 499,
-                                    imageUrl: 'https://media.dodostatic.net/image/r:584x584/0198bf439a007604880d0231be87cd3e.webp'
-                                },
-                                {
-                                    id: '0',
-                                    name: 'Диабло',
-                                    price: 499,
-                                    imageUrl: 'https://media.dodostatic.net/image/r:584x584/0198bf439a007604880d0231be87cd3e.webp'
-                                },
-                                {
-                                    id: '0',
-                                    name: 'Диабло',
-                                    price: 499,
-                                    imageUrl: 'https://media.dodostatic.net/image/r:584x584/0198bf439a007604880d0231be87cd3e.webp'
-                                },
-                                {
-                                    id: '0',
-                                    name: 'Диабло',
-                                    price: 499,
-                                    imageUrl: 'https://media.dodostatic.net/image/r:584x584/0198bf439a007604880d0231be87cd3e.webp'
-                                }
-                            ]}
-                        />
-                        <ProductsGroupList
-                            title={'Завтраки'}
-                            categoryId={1}
-                            products={[
-                                {
-                                    id: '0',
-                                    name: 'Диабло',
-                                    price: 499,
-                                    imageUrl: 'https://media.dodostatic.net/image/r:584x584/0198bf439a007604880d0231be87cd3e.webp'
-                                },
-                                {
-                                    id: '0',
-                                    name: 'Диабло',
-                                    price: 499,
-                                    imageUrl: 'https://media.dodostatic.net/image/r:584x584/0198bf439a007604880d0231be87cd3e.webp'
-                                },
-                                {
-                                    id: '0',
-                                    name: 'Диабло',
-                                    price: 499,
-                                    imageUrl: 'https://media.dodostatic.net/image/r:584x584/0198bf439a007604880d0231be87cd3e.webp'
-                                },
-                                {
-                                    id: '0',
-                                    name: 'Диабло',
-                                    price: 499,
-                                    imageUrl: 'https://media.dodostatic.net/image/r:584x584/0198bf439a007604880d0231be87cd3e.webp'
-                                },
-                                {
-                                    id: '0',
-                                    name: 'Диабло',
-                                    price: 499,
-                                    imageUrl: 'https://media.dodostatic.net/image/r:584x584/0198bf439a007604880d0231be87cd3e.webp'
-                                },
-                                {
-                                    id: '0',
-                                    name: 'Диабло',
-                                    price: 499,
-                                    imageUrl: 'https://media.dodostatic.net/image/r:584x584/0198bf439a007604880d0231be87cd3e.webp'
-                                }
-                            ]}
-                        />
+                        {
+                            categories && categories.length > 0 && categories.filter((category) => category.products.length > 0).map(category => (
+                                <ProductsGroupList
+                                    key={category.id}
+                                    title={category.name}
+                                    products={category.products}
+                                    categoryId={category.id}
+                                />
+                            ))
+                        }
                     </div>
                 </div>
             </Container>
